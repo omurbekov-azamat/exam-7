@@ -8,53 +8,41 @@ import teaImage from '../assets/tea.png';
 import colaImage from '../assets/cola.png';
 import Menu from "../components/CustomerMenu/Menu";
 import './App.css'
-import Bill from "../components/Bill/Bill";
-
-const customerMenu:CustomerMenu[] = [
-  {name: 'hamburger', price: 80, image: hamburgerImage},
-  {name: 'coffee', price: 70, image: coffeeImage},
-  {name: 'shawarma', price: 180, image: shawarmaImage},
-  {name: 'tea', price: 50, image: teaImage},
-  {name: 'frenchFries', price: 50, image: frenchFriesImage},
-  {name: 'cola', price: 40, image: colaImage},
-];
+import Orders from "../components/Bill/Orders";
 
 function App() {
-  const [orders, setOrders] = useState([
-    {name: 'hamburger', count: 0},
-    {name: 'coffee', count: 0},
-    {name: 'shawarma', count: 0},
-    {name: 'tea', count: 0},
-    {name: 'frenchFries', count: 0},
-    {name: 'cola', count: 0}
+
+  const [menu, setMenu] = useState<CustomerMenu[]>([
+    {name: 'hamburger', price: 80, image: hamburgerImage, count: 0},
+    {name: 'coffee', price: 70, image: coffeeImage, count: 0},
+    {name: 'shawarma', price: 180, image: shawarmaImage, count: 0},
+    {name: 'tea', price: 50, image: teaImage, count: 0},
+    {name: 'frenchFries', price: 50, image: frenchFriesImage, count: 0},
+    {name: 'cola', price: 40, image: colaImage, count: 0},
   ]);
 
   const getNewOrder = (index:number) => {
-    const ordersCopy = [...orders];
-    const orderCopy = {...orders[index]};
-    orderCopy.count++;
-    ordersCopy[index] = orderCopy;
-    setOrders(ordersCopy);
+    const orders = [...menu];
+    const order = {...menu[index]};
+    order.count++;
+    orders[index] = order;
+    setMenu(orders);
   };
 
   const clearOrder = (index:number) => {
-    const ordersCopy = [...orders];
-    const orderCopy = {...orders[index]};
-    orderCopy.count = 0;
-    ordersCopy[index] = orderCopy;
-    setOrders(ordersCopy);
+    const orders = [...menu];
+    const order = {...menu[index]};
+    order.count = 0;
+    orders[index] = order;
+    setMenu(orders);
   };
-
-  console.log(orders);
 
   return (
     <div className='my-container d-flex justify-content-between mt-5'>
       <div>
-        <Bill name={orders[0].name} count={orders[0].count} price={customerMenu[0].price} clearOrder={()=> {
-          clearOrder(0)
-        }}/>
+       <Orders orders={menu} clearOrder={clearOrder}/>
       </div>
-      <Menu menu={customerMenu} getOrder={getNewOrder}/>
+      <Menu menu={menu} getOrder={getNewOrder}/>
     </div>
   );
 }
