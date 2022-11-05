@@ -8,6 +8,7 @@ import teaImage from '../assets/tea.png';
 import colaImage from '../assets/cola.png';
 import Menu from "../components/CustomerMenu/Menu";
 import './App.css'
+import Bill from "../components/Bill/Bill";
 
 const customerMenu:CustomerMenu[] = [
   {name: 'hamburger', price: 80, image: hamburgerImage},
@@ -35,11 +36,11 @@ function App() {
     ordersCopy[index] = orderCopy;
     setOrders(ordersCopy);
   };
-  console.log(orders)
 
   return (
     <div className='my-container d-flex justify-content-between mt-5'>
       <div>
+        <Bill name={orders[0].name} count={orders[0].count} price={customerMenu[0].price}/>
       </div>
       <Menu menu={customerMenu} getOrder={getNewOrder}/>
     </div>
