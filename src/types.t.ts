@@ -3,4 +3,5 @@ export interface CustomerMenu {
   price: number;
   image: string;
   count: number;
+  id: number;
 }
