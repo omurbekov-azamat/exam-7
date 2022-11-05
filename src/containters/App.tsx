@@ -37,10 +37,14 @@ function App() {
     setMenu(orders);
   };
 
+  const getOrderPrice = (index:number) => {
+    return menu[index].price * menu[index].count;
+  };
+
   return (
     <div className='my-container d-flex justify-content-between mt-5'>
       <div>
-       <Orders orders={menu} clearOrder={clearOrder}/>
+        <Orders orders={menu} price={getOrderPrice} clearOrder={clearOrder}/>
       </div>
       <Menu menu={menu} getOrder={getNewOrder}/>
     </div>

@@ -4,13 +4,13 @@ import Order from "./Order";
 
 interface Props {
   orders: CustomerMenu[];
+  price: (index:number) => number;
   clearOrder: (index:number) => void;
 }
 
-const Orders: React.FC<Props> = ({orders,clearOrder}) => {
+const Orders: React.FC<Props> = ({orders,price,clearOrder}) => {
 
   const totalOrders: JSX.Element[] = [];
-
 
   orders.forEach((order,index) => {
     if(order.count > 0) {
@@ -19,7 +19,7 @@ const Orders: React.FC<Props> = ({orders,clearOrder}) => {
           key={Math.random() * 99999}
           name={order.name}
           count={order.count}
-          price={order.price}
+          price={price(index)}
           clearOrder={() => clearOrder(index)}
         />
       )
