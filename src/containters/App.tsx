@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {CustomerMenu} from "../types.t";
 import hamburgerImage from '../assets/burger.png';
 import shawarmaImage from '../assets/shawarma.png';
@@ -19,10 +19,29 @@ const customerMenu:CustomerMenu[] = [
 ];
 
 function App() {
+  const [orders, setOrders] = useState([
+    {name: 'hamburger', count: 0},
+    {name: 'shawarma', count: 0},
+    {name: 'frenchFries', count: 0},
+    {name: 'coffee', count: 0},
+    {name: 'tea', count: 0},
+    {name: 'cola', count: 0}
+  ]);
+
+  const getNewOrder = (index:number) => {
+    const ordersCopy = [...orders];
+    const orderCopy = {...orders[index]};
+    orderCopy.count++;
+    ordersCopy[index] = orderCopy;
+    setOrders(ordersCopy);
+  };
+  console.log(orders)
+
   return (
     <div className='my-container d-flex justify-content-between mt-5'>
-      <div></div>
-      <Menu menu={customerMenu}/>
+      <div>
+      </div>
+      <Menu menu={customerMenu} getOrder={getNewOrder}/>
     </div>
   );
 }
