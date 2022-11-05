@@ -6,6 +6,7 @@ import frenchFriesImage from '../assets/french fries.png';
 import coffeeImage from '../assets/coffee.png';
 import teaImage from '../assets/tea.png';
 import colaImage from '../assets/cola.png';
+import ItemFromMenu from "../components/CustomerMenu/ItemFromMenu";
 
 const customerMenu:CustomerMenu[] = [
   {name: 'hamburger', price: 80, image: hamburgerImage},
@@ -18,8 +19,8 @@ const customerMenu:CustomerMenu[] = [
 
 function App() {
   return (
-    <div className='mt-5 text-center'>
-      <button>clear</button>
+    <div>
+      <ItemFromMenu name={customerMenu[0].name} image={customerMenu[0].image} price={customerMenu[0].price}/>
     </div>
   );
 }
