@@ -41,10 +41,17 @@ function App() {
     return menu[index].price * menu[index].count;
   };
 
+  const totalPrice = menu.reduce((acc, item,currentIndex) => {
+    return acc + menu[currentIndex].price * menu[currentIndex].count
+  }, 0)
+
+  console.log(menu);
+
   return (
     <div className='my-container d-flex justify-content-between mt-5'>
       <div>
-        <Orders orders={menu} price={getOrderPrice} clearOrder={clearOrder}/>
+
+        <Orders orders={menu} price={getOrderPrice} clearOrder={clearOrder} totalPrice={totalPrice}/>
       </div>
       <Menu menu={menu} getOrder={getNewOrder}/>
     </div>

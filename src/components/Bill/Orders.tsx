@@ -6,9 +6,10 @@ interface Props {
   orders: CustomerMenu[];
   price: (index:number) => number;
   clearOrder: (index:number) => void;
+  totalPrice: number;
 }
 
-const Orders: React.FC<Props> = ({orders,price,clearOrder}) => {
+const Orders: React.FC<Props> = ({orders,price,clearOrder, totalPrice}) => {
 
   const totalOrders: JSX.Element[] = [];
 
@@ -38,6 +39,7 @@ const Orders: React.FC<Props> = ({orders,price,clearOrder}) => {
   return (
     <>
       {totalOrders}
+      <h3 className='text-center text-uppercase'>Total: {totalPrice}</h3>
     </>
   );
 };
